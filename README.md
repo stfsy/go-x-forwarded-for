@@ -69,16 +69,6 @@ func main() {
 }
 ```
 
-### Framework Examples
-
-* `net/http`: [examples/nethttp/server.go](examples/nethttp/server.go)
-* [Chi](https://github.com/go-chi/chi): [examples/chi/server.go](examples/chi/server.go)
-* [Gin](https://gin-gonic.github.io/gin): [examples/gin/server.go](examples/gin/server.go)
-* [Gorilla](https://github.com/gorilla/mux): [examples/gorilla/server.go](examples/gorilla/server.go)
-* [Negroni](https://github.com/codegangsta/negroni): [examples/negroni/server.go](examples/negroni/server.go)
-* [Alice](https://github.com/justinas/alice): [examples/alice/server.go](examples/alice/server.go)
-* [HttpRouter](https://github.com/julienschmidt/httprouter): [examples/httprouter/server.go](examples/httprouter/server.go)
-
 ---
 
 ## Configuration Options
