@@ -2,6 +2,7 @@ package xff
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"log"
 	"net"
@@ -91,14 +92,14 @@ func TestIsPublicIP(t *testing.T) {
 	assert.False(t, IsPublicIP(net.ParseIP("169.254.169.254")))
 
 	// Bogons and special ranges
-	assert.False(t, IsPublicIP(net.ParseIP("100.64.0.1")))       // CGNAT (RFC 6598)
-	assert.False(t, IsPublicIP(net.ParseIP("198.18.0.1")))       // Benchmarking (RFC 2544)
-	assert.False(t, IsPublicIP(net.ParseIP("192.0.2.1")))        // TEST-NET-1 (RFC 5737)
-	assert.False(t, IsPublicIP(net.ParseIP("198.51.100.1")))     // TEST-NET-2 (RFC 5737)
-	assert.False(t, IsPublicIP(net.ParseIP("203.0.113.1")))      // TEST-NET-3 (RFC 5737)
-	assert.False(t, IsPublicIP(net.ParseIP("240.0.0.1")))        // Class E (RFC 1112)
-	assert.False(t, IsPublicIP(net.ParseIP("0.0.0.1")))          // RFC 791
-	assert.False(t, IsPublicIP(net.ParseIP("255.255.255.255")))  // Broadcast
+	assert.False(t, IsPublicIP(net.ParseIP("100.64.0.1")))      // CGNAT (RFC 6598)
+	assert.False(t, IsPublicIP(net.ParseIP("198.18.0.1")))      // Benchmarking (RFC 2544)
+	assert.False(t, IsPublicIP(net.ParseIP("192.0.2.1")))       // TEST-NET-1 (RFC 5737)
+	assert.False(t, IsPublicIP(net.ParseIP("198.51.100.1")))    // TEST-NET-2 (RFC 5737)
+	assert.False(t, IsPublicIP(net.ParseIP("203.0.113.1")))     // TEST-NET-3 (RFC 5737)
+	assert.False(t, IsPublicIP(net.ParseIP("240.0.0.1")))       // Class E (RFC 1112)
+	assert.False(t, IsPublicIP(net.ParseIP("0.0.0.1")))         // RFC 791
+	assert.False(t, IsPublicIP(net.ParseIP("255.255.255.255"))) // Broadcast
 
 	// IPv6 private & bogon
 	assert.False(t, IsPublicIP(net.ParseIP("::1")))
@@ -552,7 +553,7 @@ func TestXFF_ContextPropagation(t *testing.T) {
 	assert.Equal(t, netip.MustParseAddr("68.45.152.220"), extracted)
 
 	// Context without client addr
-	_, emptyHas := ClientAddrFromContext(nil)
+	_, emptyHas := ClientAddrFromContext(context.Background())
 	assert.False(t, emptyHas)
 }
 
