@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    assignees:
+      - stfsy
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      gomod:
+        patterns:
+          - "*"
+  - package-ecosystem: "github-actions"
+    assignees:
+      - stfsy
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
